@@ -1,0 +1,65 @@
+package com.example.training.securitydemo.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.training.securitydemo.model.User;
+import com.example.training.securitydemo.service.UserService;
+
+/**
+* Author : Pappula.Naidu
+* Date   : 03-Dec-2024
+* Time   : 10:05:31 am
+* Project Name :com.example.training.securitydemo.controller
+**/
+@RestController
+@RequestMapping("/api")
+public class UserController {
+	
+	private final UserService userService;
+	private final AuthenticationManager authenticationManager;
+	
+	
+	//DI
+	public UserController(UserService userService, AuthenticationManager authenticationManager) {
+		super();
+		this.userService = userService;
+		this.authenticationManager = authenticationManager;
+	}
+	
+	@PostMapping("/register")
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
+        userService.saveUser(user);
+        return new ResponseEntity<>("User registered successfully", HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody User user) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())
+            );
+            String username = authentication.getName();
+            System.out.println("User " + username + " has been authenticated");
+            
+            return new ResponseEntity<>("User logged in successfully", HttpStatus.OK);
+        } catch (AuthenticationException e) {
+            return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<String> getUsers() {
+        return new ResponseEntity<>("Secure Data - Accessible Only to Authenticated Users", HttpStatus.OK);
+    }
+	
+
+}

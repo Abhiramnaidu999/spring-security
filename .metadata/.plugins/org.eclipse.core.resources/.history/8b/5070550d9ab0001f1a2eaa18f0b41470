@@ -1,0 +1,10 @@
+package com.coforge.training.security.config;
+/**
+* Author : Pappula.Naidu
+* Date   : 02-Dec-2024
+* Time   : 3:50:57 pm
+* Project Name :com.coforge.training.security.config
+**/
+public class SecurityConfig {
+
+}

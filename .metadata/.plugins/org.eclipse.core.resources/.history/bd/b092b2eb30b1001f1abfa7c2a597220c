@@ -1,0 +1,10 @@
+package com.example.training.securitydemo.controller;
+/**
+* Author : Pappula.Naidu
+* Date   : 03-Dec-2024
+* Time   : 10:05:31 am
+* Project Name :com.example.training.securitydemo.controller
+**/
+public class UserController {
+
+}

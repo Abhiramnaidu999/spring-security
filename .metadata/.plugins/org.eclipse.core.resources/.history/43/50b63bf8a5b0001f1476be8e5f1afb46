@@ -1,0 +1,10 @@
+package com.example.training.securitydemo.service;
+/**
+* Author : Pappula.Naidu
+* Date   : 02-Dec-2024
+* Time   : 5:29:37 pm
+* Project Name :com.example.training.securitydemo.service
+**/
+public class UserService {
+
+}

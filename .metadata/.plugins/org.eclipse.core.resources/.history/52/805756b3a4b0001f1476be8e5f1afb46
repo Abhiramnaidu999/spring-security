@@ -1,0 +1,10 @@
+package com.example.training.securitydemo.repository;
+/**
+* Author : Pappula.Naidu
+* Date   : 02-Dec-2024
+* Time   : 5:22:49 pm
+* Project Name :com.example.training.securitydemo.repository
+**/
+public interface UserRepository {
+
+}
